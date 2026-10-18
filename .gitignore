@@ -15,4 +15,5 @@
 
 ###> phpstorm ###
 /.idea/
+**/.idea/
 ###< phpstorm ###
