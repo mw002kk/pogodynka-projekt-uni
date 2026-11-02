@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Forecasts{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Forecasts</h1>
+        <a href="{{ path('app_forecast_new') }}" class="btn btn-primary">
+            Add forecast
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead>
+            <tr>
+                <th>City</th>
+                <th>Date</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for forecast in forecasts %}
+                <tr>
+                    <td>{{ forecast.location.city }}</td>
+                    <td>{{ forecast.date|date('Y-m-d H:i') }}</td>
+                    <td>{{ forecast.temperature }}</td>
+                    <td>{{ forecast.humidity }}%</td>
+                    <td>
+                        <a href="{{ path('app_forecast_show', {'id': forecast.id}) }}" class="btn btn-sm btn-info">Show</a>
+                        <a href="{{ path('app_forecast_edit', {'id': forecast.id}) }}" class="btn btn-sm btn-warning">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">No forecasts found.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

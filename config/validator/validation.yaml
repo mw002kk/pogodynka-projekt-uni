@@ -1,0 +1,89 @@
+App\Entity\Location:
+    properties:
+        city:
+            - NotBlank:
+                  message: "Podaj miasto"
+                  groups: [create, edit]
+            - Length:
+                  min: 2
+                  max: 255
+                  groups: [create, edit]
+
+        country:
+            - NotBlank:
+                  message: "Wybierz kraj."
+                  groups: [create, edit]
+
+        latitude:
+            - NotBlank:
+                  message: "Podaj szerokosc geograficzną"
+                  groups: [create, edit]
+            - Range:
+                  min: -90
+                  max: 90
+                  groups: [create, edit]
+
+        longitude:
+            - NotBlank:
+                  message: "Podaj długość geograficzną."
+                  groups: [create, edit]
+            - Range:
+                  min: -180
+                  max: 180
+                  groups: [create, edit]
+App\Entity\Forecast:
+    properties:
+        location:
+            - NotNull:
+                  message: "Wybierz lokalizację."
+                  groups: [create, edit]
+
+        date:
+            - NotNull:
+                  message: "Podaj datę."
+                  groups: [create, edit]
+
+        temperature:
+            - NotBlank:
+                  message: "Podaj temperaturę."
+                  groups: [create, edit]
+            - Range:
+                  min: -100
+                  max: 100
+                  groups: [create, edit]
+
+        humidity:
+            - NotBlank:
+                  message: "Podaj wilgotność."
+                  groups: [create, edit]
+            - Range:
+                  min: 0
+                  max: 100
+                  groups: [create, edit]
+
+        precipitation:
+            - NotBlank:
+                  message: "Podaj opady."
+                  groups: [create, edit]
+            - Range:
+                  min: 0
+                  max: 1000
+                  groups: [create, edit]
+
+        windSpeed:
+            - NotBlank:
+                  message: "Podaj prędkość wiatru."
+                  groups: [create, edit]
+            - Range:
+                  min: 0
+                  max: 500
+                  groups: [create, edit]
+
+        windGustsSpeed:
+            - NotBlank:
+                  message: "Podaj prędkość porywów wiatru."
+                  groups: [create, edit]
+            - Range:
+                  min: 0
+                  max: 500
+                  groups: [create, edit]

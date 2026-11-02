@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add forecast{% endblock %}
+
+{% block body %}
+    <h1>Add new forecast</h1>
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_widget(form) }}
+
+    <button class="btn btn-success mt-3">Save</button>
+    <a href="{{ path('app_forecast_index') }}" class="btn btn-secondary mt-3">
+        Back to list
+    </a>
+    {{ form_end(form) }}
+{% endblock %}
