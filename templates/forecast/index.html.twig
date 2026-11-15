@@ -5,9 +5,11 @@
 {% block body %}
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1>Forecasts</h1>
-        <a href="{{ path('app_forecast_new') }}" class="btn btn-primary">
-            Add forecast
-        </a>
+        {% if is_granted('ROLE_FORECAST_NEW') %}
+            <a href="{{ path('app_forecast_new') }}" class="btn btn-primary">
+                Add forecast
+            </a>
+        {% endif %}
     </div>
 
     <div class="table-responsive">
@@ -29,8 +31,12 @@
                     <td>{{ forecast.temperature }}</td>
                     <td>{{ forecast.humidity }}%</td>
                     <td>
-                        <a href="{{ path('app_forecast_show', {'id': forecast.id}) }}" class="btn btn-sm btn-info">Show</a>
-                        <a href="{{ path('app_forecast_edit', {'id': forecast.id}) }}" class="btn btn-sm btn-warning">Edit</a>
+                        {% if is_granted('ROLE_FORECAST_SHOW') %}
+                            <a href="{{ path('app_forecast_show', {'id': forecast.id}) }}" class="btn btn-sm btn-info">Show</a>
+                        {% endif %}
+                        {% if is_granted('ROLE_FORECAST_EDIT') %}
+                            <a href="{{ path('app_forecast_edit', {'id': forecast.id}) }}" class="btn btn-sm btn-warning">Edit</a>
+                        {% endif %}
                     </td>
                 </tr>
             {% else %}
